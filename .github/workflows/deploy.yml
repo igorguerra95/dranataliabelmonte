@@ -37,6 +37,13 @@ jobs:
 
       - name: Build project
         run: npm run build
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+
+      - name: Prepare GitHub Pages fallback and nojekyll
+        run: |
+          touch ./dist/.nojekyll
+          cp ./dist/index.html ./dist/404.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
