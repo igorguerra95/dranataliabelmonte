@@ -16,7 +16,7 @@ export interface Testimonial {
   name: string;
   age: string;
   area: string;
-  modality: 'Online' | 'Presencial (Belém)';
+  modality: string;
   content: string;
   highlight: string;
 }
@@ -32,7 +32,7 @@ export interface BookingFormData {
   fullName: string;
   phone: string;
   email: string;
-  modality: 'Presencial (Belém)' | 'Online (Google Meet)';
+  modality: 'Presencial (Ed. Torre Vitta Office)' | 'On-line (Todo o Brasil)';
   areaOfInterest: string;
   preferredPeriod: 'Manhã' | 'Tarde' | 'Noite';
   message: string;

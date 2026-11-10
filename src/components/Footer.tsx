@@ -1,6 +1,6 @@
 import React from 'react';
-import { ShieldCheck, Phone, MapPin, Mail, Heart, ArrowUp } from 'lucide-react';
-import { CONTACT_INFO, CLINICAL_AREAS } from '../data/clinicalData';
+import { ShieldCheck, Phone, MapPin, Building2, Heart, ArrowUp, Linkedin, Instagram, BookOpen, MessageCircle } from 'lucide-react';
+import { CONTACT_INFO } from '../data/clinicalData';
 
 export const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -18,19 +18,25 @@ export const Footer: React.FC = () => {
           <div className="lg:col-span-5 space-y-4">
             <div className="flex items-center gap-1.5">
               <span className="font-serif text-2xl font-bold tracking-tight text-white">
-                Natalia Belmonte
+                Natália Belmonte
               </span>
               <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]" />
             </div>
             <p className="text-xs uppercase tracking-[0.2em] text-[#D4AF37] font-semibold">
-              Neuropsicóloga &amp; Psicóloga Clínica &bull; {CONTACT_INFO.crp}
+              Neuropsicologia &amp; Psicologia Clínica &bull; {CONTACT_INFO.crp}
             </p>
             <p className="text-xs sm:text-sm text-[#FAF5E8]/70 leading-relaxed font-light max-w-sm">
-              Atendimento neuropsicológico e psicoterapia humanizada embasada em evidências científicas. Um espaço seguro para resgatar a sua paz, autonomia e equilíbrio emocional.
+              {CONTACT_INFO.education}. Realizo psicoterapia (on-line e presencial) e avaliação neuropsicológica com ética, cuidado e respeito à singularidade de cada pessoa.
             </p>
-            <div className="pt-2 flex items-center gap-2 text-xs text-[#D4AF37]">
-              <ShieldCheck className="w-4 h-4 text-[#D4AF37]" />
-              <span>Conforme Código de Ética do CFP (Conselho Federal de Psicologia)</span>
+            <div className="pt-2 flex flex-col gap-1 text-xs text-[#D4AF37]">
+              <span className="flex items-center gap-1.5">
+                <ShieldCheck className="w-4 h-4 text-[#D4AF37]" />
+                Psicoterapia: {CONTACT_INFO.regulations.psychotherapy}
+              </span>
+              <span className="flex items-center gap-1.5">
+                <ShieldCheck className="w-4 h-4 text-[#D4AF37]" />
+                Avaliação Neuropsicológica: {CONTACT_INFO.regulations.neuropsychology}
+              </span>
             </div>
           </div>
 
@@ -46,28 +52,23 @@ export const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a href="#areas" className="hover:text-white transition-colors">
-                  Áreas de Atuação
+                <a href="#avaliacao-neuro" className="hover:text-white transition-colors">
+                  Avaliação Neuropsicológica
+                </a>
+              </li>
+              <li>
+                <a href="#psicoterapia" className="hover:text-white transition-colors">
+                  Psicoterapia Psicanalítica
                 </a>
               </li>
               <li>
                 <a href="#sobre" className="hover:text-white transition-colors">
-                  Sobre a Especialista
-                </a>
-              </li>
-              <li>
-                <a href="#metodologia" className="hover:text-white transition-colors">
-                  Metodologia Clínica
+                  Sobre Natália Belmonte
                 </a>
               </li>
               <li>
                 <a href="#espaco" className="hover:text-white transition-colors">
-                  Consultório em Belém &amp; Online
-                </a>
-              </li>
-              <li>
-                <a href="#depoimentos" className="hover:text-white transition-colors">
-                  Depoimentos de Pacientes
+                  On-line &amp; Ed. Torre Vitta Office
                 </a>
               </li>
               <li>
@@ -77,7 +78,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <a href="#contato" className="hover:text-white transition-colors">
-                  Contato e Localização
+                  Contato &amp; Localização
                 </a>
               </li>
             </ul>
@@ -86,11 +87,11 @@ export const Footer: React.FC = () => {
           {/* Coluna 3: Localização e Atendimento (4 colunas) */}
           <div className="lg:col-span-4 space-y-3">
             <p className="text-xs font-bold uppercase tracking-widest text-[#D4AF37]">
-              Atendimento &amp; Consultório
+              Consultório &amp; Atendimento
             </p>
             <div className="space-y-3 text-xs text-[#FAF5E8]/80 font-light">
               <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-[#F472B6] shrink-0 mt-0.5" />
+                <Building2 className="w-4 h-4 text-[#F472B6] shrink-0 mt-0.5" />
                 <span>{CONTACT_INFO.address}</span>
               </div>
               <div className="flex items-center gap-2.5">
@@ -104,8 +105,46 @@ export const Footer: React.FC = () => {
               </div>
               <div className="flex items-start gap-2.5">
                 <ShieldCheck className="w-4 h-4 text-[#F472B6] shrink-0 mt-0.5" />
-                <span>Horários: Segunda a Sexta das 08h às 20h • Sábados das 08h às 13h</span>
+                <span>Público-Alvo: {CONTACT_INFO.targetAudience}</span>
               </div>
+            </div>
+
+            {/* Redes Sociais */}
+            <div className="pt-3 flex items-center gap-3">
+              <a
+                href={CONTACT_INFO.socialLinks.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#25D366] flex items-center justify-center transition-colors text-white"
+                aria-label="WhatsApp"
+              >
+                <MessageCircle className="w-4 h-4" />
+              </a>
+              <a
+                href={CONTACT_INFO.socialLinks.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#0077B5] flex items-center justify-center transition-colors text-white"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="w-4 h-4" />
+              </a>
+              <a
+                href={CONTACT_INFO.socialLinks.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#E1306C] flex items-center justify-center transition-colors text-white"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-4 h-4" />
+              </a>
+              <a
+                href="#faq"
+                className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#D4AF37] flex items-center justify-center transition-colors text-white"
+                aria-label="Blog"
+              >
+                <BookOpen className="w-4 h-4" />
+              </a>
             </div>
 
             <div className="pt-3">
@@ -124,20 +163,20 @@ export const Footer: React.FC = () => {
         {/* Faixa Ética e Emergências */}
         <div className="py-6 border-b border-white/10 text-xs text-[#FAF5E8]/60 leading-relaxed space-y-2">
           <p className="text-center sm:text-left">
-            <strong>Aviso Legal de Emergência:</strong> A psicoterapia e os atendimentos online não constituem serviço de pronto-socorro ou emergência psiquiátrica. Em casos de crises agudas ou ideação suicida, acione imediatamente o <strong>SAMU (192)</strong> ou contate o <strong>CVV (Centro de Valorização da Vida) pelo número 188</strong> (ligação gratuita nacional, 24 horas).
+            <strong>Aviso Legal de Emergência:</strong> A psicoterapia e os atendimentos online não constituem serviço de pronto-socorro ou emergência psiquiátrica. Em situações de crise aguda com risco à vida, procure imediatamente o pronto-atendimento hospitalar mais próximo, acione o <strong>SAMU (192)</strong> ou ligue para o <strong>CVV (188)</strong>.
           </p>
           <p className="text-center sm:text-left">
-            Atendimento em conformidade com o Código de Ética Profissional do Psicólogo e as Resoluções CFP nº 11/2018 e CFP nº 06/2019.
+            Atendimento pautado pelo sigilo profissional e por cuidados com a privacidade, respeitados os limites éticos e legais (Código de Ética do Psicólogo e Resoluções CFP nº 11/2018, nº 13/2022 e nº 31/2022).
           </p>
         </div>
 
-        {/* Direitos Autorais e Créditos */}
+        {/* Direitos Autorais */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-[#FAF5E8]/50 gap-4">
           <p>
-            &copy; {new Date().getFullYear()} Natalia Belmonte. Todos os direitos reservados. {CONTACT_INFO.crp}.
+            &copy; {new Date().getFullYear()} Natália Belmonte. Todos os direitos reservados. {CONTACT_INFO.crp}.
           </p>
           <p className="flex items-center gap-1">
-            <span>Desenvolvido com excelência e cuidado humano</span>
+            <span>Ética, confidencialidade, atualização constante e humanização</span>
             <Heart className="w-3.5 h-3.5 text-[#F472B6]" />
           </p>
         </div>

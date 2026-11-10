@@ -6,7 +6,7 @@ export const FloatingWhatsApp: React.FC = () => {
   const [showTooltip, setShowTooltip] = useState(true);
 
   const defaultMessage = encodeURIComponent(
-    'Olá, Dra. Natalia Belmonte! Gostaria de informações sobre horários disponíveis para consulta.'
+    'Olá, Dra. Natália Belmonte! Gostaria de informações sobre horários disponíveis para consulta.'
   );
 
   const whatsappUrl = `https://wa.me/${CONTACT_INFO.phoneRaw}?text=${defaultMessage}`;
@@ -22,7 +22,7 @@ export const FloatingWhatsApp: React.FC = () => {
               Olá! Posso te ajudar?
             </span>
             <span className="text-[10px] text-[#4A3E45]">
-              Fale diretamente com a Dra. Natalia Belmonte
+              Fale diretamente com a Dra. Natália Belmonte
             </span>
           </div>
           <button

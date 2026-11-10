@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ChevronDown, HelpCircle, MessageCircle, Calendar } from 'lucide-react';
+import { ChevronDown, HelpCircle, ShieldCheck, Calendar, BookOpen } from 'lucide-react';
 import { FAQS, CONTACT_INFO } from '../data/clinicalData';
 import { FAQItem } from '../types';
 
@@ -16,24 +16,40 @@ export const FAQ: React.FC<FAQProps> = ({ onOpenBooking }) => {
   };
 
   return (
-    <section id="faq" className="py-20 lg:py-32 bg-[#FAF7F5] relative">
+    <section id="faq" className="py-20 lg:py-28 bg-[#FAF7F5] relative">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Cabeçalho */}
-        <div className="text-center mb-16">
-          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-white border border-[#D4AF37]/30 text-[#8C6D1F] mb-4 shadow-sm">
+        <div className="text-center mb-12">
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-white border border-[#D4AF37]/40 text-[#8C6D1F] mb-3 shadow-xs">
             <HelpCircle className="w-3.5 h-3.5" />
-            <span>Transparência &bull; Dúvidas Frequentes</span>
+            <span>9. Perguntas Frequentes &bull; Respostas Claras</span>
           </span>
           <h2 className="font-serif text-3xl sm:text-5xl font-medium text-[#2B1E24] tracking-tight mb-4">
-            Perguntas Frequentes
+            Dúvidas Frequentes sobre Atendimento
           </h2>
           <p className="text-base text-[#4A3E45] font-light leading-relaxed">
-            Tire todas as suas dúvidas sobre o funcionamento das sessões, reembolso com planos de saúde, agendamento e sigilo ético.
+            Esclareça suas dúvidas sobre a avaliação neuropsicológica, o processo de psicoterapia, prazos, alta e as normas do CFP.
           </p>
         </div>
 
-        {/* Lista de Accordions */}
+        {/* Faixa das Resoluções CFP (Item 8 do PDF) */}
+        <div className="mb-8 p-4 rounded-2xl bg-white border border-[#D4AF37]/35 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+          <div className="flex items-center gap-2 text-[#8C6D1F] font-bold uppercase tracking-wider">
+            <BookOpen className="w-4 h-4 text-[#D4AF37]" />
+            <span>8. Regulamentação Profissional do CFP:</span>
+          </div>
+          <div className="flex flex-wrap items-center gap-3 text-[#2B1E24]">
+            <span className="px-2.5 py-1 rounded-md bg-[#FAF5E8] border border-[#D4AF37]/30 font-medium">
+              Psicoterapia: <strong>{CONTACT_INFO.regulations.psychotherapy}</strong>
+            </span>
+            <span className="px-2.5 py-1 rounded-md bg-[#FDF2F8] border border-[#F472B6]/30 font-medium">
+              Avaliação Neuropsicológica: <strong>{CONTACT_INFO.regulations.neuropsychology}</strong>
+            </span>
+          </div>
+        </div>
+
+        {/* Accordions */}
         <div className="space-y-4">
           {FAQS.map((faq: FAQItem) => {
             const isOpen = openId === faq.id;
@@ -41,7 +57,7 @@ export const FAQ: React.FC<FAQProps> = ({ onOpenBooking }) => {
             return (
               <div
                 key={faq.id}
-                className="bg-white rounded-2xl border border-[#EADBCE] overflow-hidden transition-all duration-200 shadow-sm hover:border-[#D4AF37]/50"
+                className="bg-white rounded-2xl border border-[#EADBCE] overflow-hidden transition-all duration-200 shadow-xs hover:border-[#D4AF37]/60"
               >
                 <button
                   type="button"
@@ -49,9 +65,14 @@ export const FAQ: React.FC<FAQProps> = ({ onOpenBooking }) => {
                   className="w-full py-5 px-6 sm:px-8 text-left flex items-center justify-between gap-4 cursor-pointer focus:outline-none"
                   aria-expanded={isOpen}
                 >
-                  <span className="font-serif text-lg sm:text-xl font-semibold text-[#2B1E24] leading-snug">
-                    {faq.question}
-                  </span>
+                  <div>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#BE185D] block mb-1">
+                      {faq.category}
+                    </span>
+                    <span className="font-serif text-lg sm:text-xl font-semibold text-[#2B1E24] leading-snug">
+                      {faq.question}
+                    </span>
+                  </div>
                   <div
                     className={`w-8 h-8 rounded-full bg-[#FAF5E8] flex items-center justify-center shrink-0 transition-transform duration-300 text-[#B38728] ${
                       isOpen ? 'rotate-180 bg-[#BE185D] text-white' : ''
@@ -80,14 +101,14 @@ export const FAQ: React.FC<FAQProps> = ({ onOpenBooking }) => {
           })}
         </div>
 
-        {/* Box Inferior de Apoio com CTA */}
-        <div className="mt-14 p-8 rounded-3xl bg-gradient-to-r from-[#FAF5E8] via-[#FDF2F8] to-white border border-[#D4AF37]/40 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+        {/* Caixa de Apoio */}
+        <div className="mt-12 p-8 rounded-3xl bg-gradient-to-r from-[#FAF5E8] via-[#FDF2F8] to-white border border-[#D4AF37]/40 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
           <div>
             <h3 className="font-serif text-xl font-bold text-[#2B1E24] mb-1">
-              Ainda tem alguma dúvida específica?
+              Ficou com alguma dúvida sobre o atendimento?
             </h3>
             <p className="text-xs sm:text-sm text-[#4A3E45]">
-              Estamos disponíveis pelo WhatsApp para conversar sem nenhum compromisso.
+              Converse diretamente pelo WhatsApp ou agende uma conversa inicial.
             </p>
           </div>
           <button

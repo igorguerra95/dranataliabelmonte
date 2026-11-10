@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { X, Calendar, MapPin, Video, CheckCircle2, ShieldCheck, Send, MessageCircle } from 'lucide-react';
-import { CONTACT_INFO, CLINICAL_AREAS } from '../data/clinicalData';
+import { X, Calendar, Building2, Video, CheckCircle2, ShieldCheck, Send, MessageCircle } from 'lucide-react';
+import { CONTACT_INFO, PSYCHOTHERAPY_MODALITIES } from '../data/clinicalData';
 import { BookingFormData } from '../types';
 
 interface BookingModalProps {
@@ -18,7 +18,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
     fullName: '',
     phone: '',
     email: '',
-    modality: 'Presencial (Belém)',
+    modality: 'Presencial (Ed. Torre Vitta Office)',
     areaOfInterest: preselectedArea || 'Avaliação Neuropsicológica Completa',
     preferredPeriod: 'Tarde',
     message: ''
@@ -49,13 +49,13 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const text = encodeURIComponent(
-      `Olá, Dra. Natalia Belmonte! Gostaria de informações sobre agendamento de consulta:\n\n` +
+      `Olá, Dra. Natália Belmonte! Gostaria de informações sobre agendamento:\n\n` +
       `👤 *Nome:* ${formData.fullName}\n` +
       `📞 *Telefone:* ${formData.phone}\n` +
       `📧 *E-mail:* ${formData.email || 'Não informado'}\n` +
       `📍 *Modalidade:* ${formData.modality}\n` +
-      `🧠 *Área:* ${formData.areaOfInterest}\n` +
-      `🕒 *Período Preferido:* ${formData.preferredPeriod}\n` +
+      `🧠 *Área / Demanda:* ${formData.areaOfInterest}\n` +
+      `🕒 *Período:* ${formData.preferredPeriod}\n` +
       (formData.message ? `💬 *Mensagem:* ${formData.message}` : '')
     );
 
@@ -66,26 +66,24 @@ export const BookingModal: React.FC<BookingModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-      {/* Backdrop */}
       <div 
         className="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
         onClick={onClose} 
       />
 
-      {/* Conteúdo do Modal */}
-      <div className="relative bg-white rounded-3xl max-w-xl w-full shadow-2xl border border-[#D4AF37]/30 z-10 overflow-hidden my-8">
+      <div className="relative bg-white rounded-3xl max-w-xl w-full shadow-2xl border border-[#D4AF37]/35 z-10 overflow-hidden my-8">
         
-        {/* Cabeçalho do Modal */}
+        {/* Cabeçalho */}
         <div className="bg-gradient-to-r from-[#2B1E24] to-[#4A3E45] p-6 text-white flex items-center justify-between border-b border-[#D4AF37]/40">
           <div>
             <span className="text-[10px] font-bold tracking-widest uppercase text-[#D4AF37] block mb-1">
-              Atendimento Humanizado &bull; {CONTACT_INFO.crp}
+              {CONTACT_INFO.crp} &bull; {CONTACT_INFO.education}
             </span>
             <h3 className="font-serif text-2xl font-bold">
-              Agendar Consulta com Natalia Belmonte
+              Agendamento com Natália Belmonte
             </h3>
             <p className="text-xs text-[#FAF5E8]/80 mt-0.5">
-              Presencial em Belém (Pedreira) ou Online via Google Meet
+              Ed. Torre Vitta Office (Marco, Belém) &bull; On-line para todo Brasil
             </p>
           </div>
           <button
@@ -97,7 +95,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
           </button>
         </div>
 
-        {/* Corpo do Modal */}
+        {/* Formulário */}
         <div className="p-6 sm:p-8 max-h-[75vh] overflow-y-auto">
           {submitted ? (
             <div className="text-center py-6">
@@ -108,7 +106,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                 Solicitação Direcionada!
               </h4>
               <p className="text-xs sm:text-sm text-[#4A3E45] leading-relaxed mb-6">
-                Abrimos o WhatsApp da Dra. Natalia Belmonte com seus dados pré-preenchidos. Nossa equipe responderá em breve com os horários disponíveis.
+                Abrimos o WhatsApp da Dra. Natália Belmonte com seus dados pré-preenchidos. Nossa equipe responderá em breve com os horários disponíveis.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <a
@@ -138,10 +136,10 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                 <input
                   type="text"
                   required
-                  placeholder="Ex: Camila Soares"
+                  placeholder="Ex: Carlos Eduardo"
                   value={formData.fullName}
                   onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-[#EADBCE] focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] outline-none text-sm bg-[#FAF7F5]"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-[#EADBCE] focus:border-[#D4AF37] outline-none text-sm bg-[#FAF7F5]"
                 />
               </div>
 
@@ -156,7 +154,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                     placeholder="Ex: (91) 98264-4888"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#EADBCE] focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] outline-none text-sm bg-[#FAF7F5]"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#EADBCE] focus:border-[#D4AF37] outline-none text-sm bg-[#FAF7F5]"
                   />
                 </div>
                 <div>
@@ -168,59 +166,75 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                     placeholder="Ex: seuemail@dominio.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#EADBCE] focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] outline-none text-sm bg-[#FAF7F5]"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#EADBCE] focus:border-[#D4AF37] outline-none text-sm bg-[#FAF7F5]"
                   />
                 </div>
               </div>
 
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-[#2B1E24] mb-1">
-                  Modalidade *
+                  Formato de Atendimento *
                 </label>
                 <div className="grid grid-cols-2 gap-2">
                   <button
                     type="button"
-                    onClick={() => setFormData({ ...formData, modality: 'Presencial (Belém)' })}
+                    onClick={() => setFormData({ ...formData, modality: 'Presencial (Ed. Torre Vitta Office)' })}
                     className={`py-2 px-3 rounded-xl border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
-                      formData.modality === 'Presencial (Belém)'
+                      formData.modality === 'Presencial (Ed. Torre Vitta Office)'
                         ? 'bg-[#FAF5E8] border-[#D4AF37] text-[#8C6D1F]'
                         : 'border-[#EADBCE] text-[#4A3E45] hover:bg-[#FAF7F5]'
                     }`}
                   >
-                    <MapPin className="w-3.5 h-3.5" />
+                    <Building2 className="w-3.5 h-3.5" />
                     <span>Presencial Belém</span>
                   </button>
                   <button
                     type="button"
-                    onClick={() => setFormData({ ...formData, modality: 'Online (Google Meet)' })}
+                    onClick={() => setFormData({ ...formData, modality: 'On-line (Todo o Brasil)' })}
                     className={`py-2 px-3 rounded-xl border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
-                      formData.modality === 'Online (Google Meet)'
+                      formData.modality === 'On-line (Todo o Brasil)'
                         ? 'bg-[#FDF2F8] border-[#F472B6] text-[#BE185D]'
                         : 'border-[#EADBCE] text-[#4A3E45] hover:bg-[#FAF7F5]'
                     }`}
                   >
                     <Video className="w-3.5 h-3.5" />
-                    <span>Online Brasil</span>
+                    <span>On-line Brasil</span>
                   </button>
                 </div>
               </div>
 
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-[#2B1E24] mb-1">
-                  Área de Interesse *
+                  Demanda Principal *
                 </label>
                 <select
                   value={formData.areaOfInterest}
                   onChange={(e) => setFormData({ ...formData, areaOfInterest: e.target.value })}
                   className="w-full px-3.5 py-2.5 rounded-xl border border-[#EADBCE] focus:border-[#D4AF37] outline-none text-sm bg-[#FAF7F5]"
                 >
-                  {CLINICAL_AREAS.map((a) => (
-                    <option key={a.id} value={a.title}>
-                      {a.title}
-                    </option>
-                  ))}
-                  <option value="Desejo orientação na primeira sessão">
-                    Outro / Quero conversar primeiro
+                  <option value="Avaliação Neuropsicológica Completa">
+                    Avaliação Neuropsicológica Completa
+                  </option>
+                  <option value="Investigação de TDAH ou TEA em Adulto">
+                    Investigação de TDAH ou TEA em Adulto
+                  </option>
+                  <option value="Declínio Cognitivo ou Demências em Idoso">
+                    Declínio Cognitivo / Queixa de Memória em Idoso
+                  </option>
+                  <option value="Psicoterapia Breve de Orientação Psicanalítica">
+                    Psicoterapia Breve de Orientação Psicanalítica
+                  </option>
+                  <option value="Psicoterapia Focal">
+                    Psicoterapia Focal
+                  </option>
+                  <option value="Psicoterapia de Apoio / Suporte Emocional">
+                    Psicoterapia de Apoio / Suporte Emocional
+                  </option>
+                  <option value="Processo Analítico">
+                    Processo Analítico (Autoconhecimento profundo)
+                  </option>
+                  <option value="Primeira conversa para definir o formato">
+                    Desejo pensar junto na primeira conversa
                   </option>
                 </select>
               </div>
@@ -272,7 +286,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
 
               <div className="flex items-center justify-center gap-1.5 text-[11px] text-[#786C73] pt-1">
                 <ShieldCheck className="w-3.5 h-3.5 text-[#D4AF37]" />
-                <span>Sigilo ético garantido pelo Conselho Federal de Psicologia</span>
+                <span>100% Sigilo profissional e ético &bull; {CONTACT_INFO.crp}</span>
               </div>
 
             </form>

@@ -30,7 +30,7 @@ export const Methodology: React.FC<MethodologyProps> = ({ onOpenBooking }) => {
       num: '03',
       title: 'Plano Terapêutico Sob Medida',
       icon: BrainCircuit,
-      desc: 'Estabelecemos juntos as metas do tratamento. Aplicamos técnicas baseadas em evidências (TCC e psicoeducação neurobiológica) com exercícios práticos aplicáveis entre as sessões para mudança real no cotidiano.'
+      desc: 'Estabelecemos juntos as metas do atendimento. Para psicoterapia, trabalhamos com escuta de base psicanalítica; para avaliação neuropsicológica, utilizamos instrumentos padronizados baseados em evidências científicas.'
     },
     {
       num: '04',

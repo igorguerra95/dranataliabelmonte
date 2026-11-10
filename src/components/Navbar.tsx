@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone, Calendar, ShieldCheck, Sparkles } from 'lucide-react';
+import { Menu, X, Phone, Calendar, ShieldCheck, Sparkles, MapPin } from 'lucide-react';
 import { CONTACT_INFO } from '../data/clinicalData';
 
 interface NavbarProps {
@@ -12,11 +12,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -24,12 +20,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
 
   const navLinks = [
     { label: 'Início', href: '#inicio' },
-    { label: 'Áreas de Atuação', href: '#areas' },
-    { label: 'Sobre', href: '#sobre' },
-    { label: 'Metodologia', href: '#metodologia' },
-    { label: 'Consultório & Online', href: '#espaco' },
-    { label: 'Depoimentos', href: '#depoimentos' },
-    { label: 'Dúvidas', href: '#faq' },
+    { label: 'Avaliação Neuropsicológica', href: '#avaliacao-neuro' },
+    { label: 'Psicoterapia', href: '#psicoterapia' },
+    { label: 'Sobre a Psicóloga', href: '#sobre' },
+    { label: 'On-line e Presencial', href: '#espaco' },
+    { label: 'Dúvidas Frequentes', href: '#faq' },
     { label: 'Contato', href: '#contato' }
   ];
 
@@ -54,11 +49,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
           <div className="flex items-center gap-2">
             <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             <span className="font-medium text-[#FAF5E8]">
-              Agenda Aberta para Novos Pacientes • Presencial em Belém &amp; Online Brasil
+              Ed. Torre Vitta Office, sala 1506 (Marco, Belém) &bull; On-line para todo Brasil &bull; Adultos e Idosos
             </span>
           </div>
           <div className="flex items-center gap-4 text-xs font-light text-[#D4AF37]">
-            <span className="flex items-center gap-1">
+            <span className="flex items-center gap-1 font-semibold">
               <ShieldCheck className="w-3.5 h-3.5 text-[#D4AF37]" />
               {CONTACT_INFO.crp}
             </span>
@@ -79,28 +74,28 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
         className={`sticky top-0 z-40 transition-all duration-300 ${
           isScrolled
             ? 'bg-white/95 backdrop-blur-md shadow-[0_4px_25px_rgba(43,30,36,0.06)] border-b border-[#F472B6]/15 py-3'
-            : 'bg-[#FAF7F5]/90 backdrop-blur-sm border-b border-[#EADBCE]/50 py-4'
+            : 'bg-[#FAF7F5]/95 backdrop-blur-sm border-b border-[#EADBCE]/50 py-4'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
-            {/* Logotipo Editorial Premium */}
+            {/* Logotipo Editorial */}
             <a
               href="#inicio"
               onClick={(e) => handleNavClick(e, '#inicio')}
               className="group flex flex-col text-left focus:outline-none"
             >
               <span className="font-serif text-2xl sm:text-3xl font-semibold tracking-tight text-[#2B1E24] group-hover:text-[#9D174D] transition-colors flex items-center gap-1.5">
-                Natalia Belmonte
+                Natália Belmonte
                 <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#D4AF37]" />
               </span>
               <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-[#B38728] font-bold">
-                Neuropsicóloga &amp; Psicóloga Clínica
+                Neuropsicologia &amp; Psicologia Clínica &bull; {CONTACT_INFO.crp}
               </span>
             </a>
 
             {/* Menu Desktop */}
-            <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2">
+            <nav className="hidden xl:flex items-center space-x-1">
               {navLinks.map((link) => (
                 <a
                   key={link.label}
@@ -125,7 +120,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
             </div>
 
             {/* Botão Menu Mobile */}
-            <div className="flex items-center gap-2 lg:hidden">
+            <div className="flex items-center gap-2 xl:hidden">
               <button
                 onClick={onOpenBooking}
                 className="sm:hidden px-3 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider text-white bg-[#BE185D] cursor-pointer"
@@ -147,21 +142,22 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
 
       {/* Drawer Menu Mobile */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 lg:hidden">
-          {/* Backdrop */}
+        <div className="fixed inset-0 z-50 xl:hidden">
           <div
             className="fixed inset-0 bg-black/40 backdrop-blur-sm transition-opacity"
             onClick={() => setMobileMenuOpen(false)}
           />
 
-          {/* Conteúdo do Drawer */}
           <div className="fixed inset-y-0 right-0 max-w-xs w-full bg-[#FAF7F5] shadow-2xl p-6 flex flex-col justify-between border-l border-[#D4AF37]/30 z-10 overflow-y-auto">
             <div>
               <div className="flex items-center justify-between pb-6 border-b border-[#EADBCE]">
                 <div>
-                  <span className="font-serif text-xl font-bold text-[#2B1E24]">Natalia Belmonte</span>
+                  <span className="font-serif text-xl font-bold text-[#2B1E24]">Natália Belmonte</span>
                   <p className="text-[10px] text-[#B38728] font-bold uppercase tracking-widest">
                     {CONTACT_INFO.crp}
+                  </p>
+                  <p className="text-[10px] text-[#786C73]">
+                    {CONTACT_INFO.approach}
                   </p>
                 </div>
                 <button
@@ -201,8 +197,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
               </button>
 
               <div className="text-center text-xs text-[#786C73]">
-                <p className="font-medium text-[#2B1E24]">{CONTACT_INFO.city}</p>
-                <p className="mt-1">{CONTACT_INFO.phone}</p>
+                <p className="font-medium text-[#2B1E24]">Ed. Torre Vitta Office, sala 1506</p>
+                <p className="text-[11px] text-[#4A3E45]">{CONTACT_INFO.address}</p>
+                <p className="mt-1 font-semibold text-[#B38728]">{CONTACT_INFO.phone}</p>
               </div>
             </div>
           </div>

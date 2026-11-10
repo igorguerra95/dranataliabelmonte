@@ -1,224 +1,265 @@
-import { ClinicalArea, Testimonial, FAQItem } from '../types';
+export interface NeuroIndication {
+  title: string;
+  category: string;
+  description: string;
+  items: string[];
+}
 
-export const CLINICAL_AREAS: ClinicalArea[] = [
+export interface PsychotherapyModality {
+  id: string;
+  name: string;
+  whatIsIt: string;
+  whenToDo: string;
+  badge: string;
+}
+
+export interface FAQItem {
+  id: string;
+  category: string;
+  question: string;
+  answer: string;
+}
+
+export const CONTACT_INFO = {
+  name: 'Natália Belmonte',
+  crp: 'CRP 10/12139',
+  title: 'Neuropsicologia e Psicologia Clínica',
+  approach: 'Psicoterapia de base psicanalítica',
+  education: 'Pós-graduanda em Neuropsicologia pelo Instituto de Ensino e Pesquisa Albert Einstein - SP',
+  targetAudience: 'Adultos e Idosos',
+  phone: '(91) 98264-4888',
+  phoneRaw: '5591982644888',
+  address: 'Tv. Rômulo Maiorana, nº 700 - Marco. Ed. Torre Vitta Office, sala 1506',
+  neighborhood: 'Marco',
+  city: 'Belém - PA',
+  cep: '66093-005',
+  hours: 'Segunda a Sexta: 08:00 às 20:00 • Sábados: 08:00 às 13:00 (hora marcada)',
+  email: 'contato@nataliabelmonte.com.br',
+  slogan: 'Avaliação Neuropsicológica baseada em Evidências e espaço de psicoterapia seguro, acolhedor e sem julgamentos.',
+  regulations: {
+    psychotherapy: 'Resolução CFP Nº 13/2022',
+    neuropsychology: 'Resolução CFP Nº 31/2022'
+  },
+  socialLinks: {
+    whatsapp: 'https://wa.me/5591982644888',
+    linkedin: 'https://www.linkedin.com/in/nataliabelmonte',
+    instagram: 'https://www.instagram.com/nataliabelmonte.psi',
+    blog: '#artigos'
+  }
+};
+
+export const CLINICAL_VALUES = [
   {
-    id: 'avaliacao-neuropsicologica',
-    title: 'Avaliação Neuropsicológica Completa',
-    badge: 'Especialidade de Destaque',
-    category: 'neuro',
-    shortDesc: 'Investigação profunda das funções cognitivas, memória, atenção, linguagem e raciocínio para diagnósticos precisos e laudos periciais.',
-    fullDesc: 'A avaliação neuropsicológica é uma investigação minuciosa que mapeia o funcionamento do cérebro e seu reflexo no comportamento e na cognição. Com testes padronizados validados pelo CFP, é fundamental para o diagnóstico de TDAH, Transtorno do Espectro Autista (TEA) em adultos, queixas de esquecimento, sequelas neurológicas e declínio cognitivo.',
-    symptoms: [
-      'Lapsos de memória frequentes no trabalho ou estudos',
-      'Dificuldade severa de manter a concentração e foco contínuo',
-      'Desorganização persistente e procrastinação paralisante',
-      'Necessidade de laudo para concursos, médicos ou psiquiatras'
-    ],
-    benefits: [
-      'Mapeamento completo do perfil cognitivo e potencial intelectual',
-      'Laudo técnico detalhado com orientações práticas para a vida diária',
-      'Direcionamento assertivo para psiquiatras, neurologistas e terapeutas',
-      'Plano individualizado de reabilitação neurocognitiva'
-    ],
-    icon: 'Brain'
+    title: 'Ética & Sigilo Absoluto',
+    desc: 'Atendimento pautado pelo rigor ético e sigilo profissional, respeitados os limites legais e as resoluções do CFP.'
   },
   {
-    id: 'ansiedade-panico',
-    title: 'Ansiedade Generalizada & Síndrome do Pânico',
-    badge: 'Tratamento Baseado em Evidências',
-    category: 'emocional',
-    shortDesc: 'Cessação de crises de pânico, controle do medo paralisante e reestruturação de pensamentos catastróficos com a Terapia Cognitivo-Comportamental.',
-    fullDesc: 'A ansiedade quando disfuncional aprisiona o corpo em estado de alerta perpétuo. Unimos técnicas comprovadas da TCC à psicoeducação neurobiológica para você compreender o circuito do medo, modular sua resposta fisiológica e retomar o controle da sua rotina com tranquilidade.',
-    symptoms: [
-      'Taquicardia, falta de ar, aperto no peito e tremores repentinos',
-      'Preocupação excessiva e pensamentos catastróficos ininterruptos',
-      'Tensão muscular constante e sensação iminente de perigo',
-      'Insônia decorrente de mente acelerada no fim do dia'
-    ],
-    benefits: [
-      'Alívio gradual das crises com técnicas de regulação neurovegetativa',
-      'Reestruturação cognitiva de crenças de desamparo e vulnerabilidade',
-      'Recuperação da confiança para viajar, dirigir e participar de eventos',
-      'Aumento da resiliência frente a situações imprevistas'
-    ],
-    icon: 'Activity'
+    title: 'Confidencialidade Rigorosa',
+    desc: 'Privacidade total em cada etapa do atendimento, seja presencial ou online em ambiente criptografado.'
   },
   {
-    id: 'depressao-humor',
-    title: 'Depressão & Regulação do Humor',
-    badge: 'Acolhimento Sensível',
-    category: 'emocional',
-    shortDesc: 'Resgate da vitalidade, superação da apatia emocional e reconstrução do sentido de vida através de ativação comportamental estruturada.',
-    fullDesc: 'A depressão não é fraqueza ou falta de vontade; é uma condição neuroafetiva que drena a energia e a esperança. Em nosso espaço acolhedor, traçamos passos graduais para restabelecer os circuitos de recompensa, resgatar o autocuidado e reconstruir laços significativos.',
-    symptoms: [
-      'Tristeza profunda persistente ou vazio emocional contínuo',
-      'Perda de interesse nas atividades que antes traziam prazer (anedonia)',
-      'Fadiga crônica, lentidão mental e sensação de sobrecarga',
-      'Sentimento paralisante de culpa, inutilidade ou desesperança'
-    ],
-    benefits: [
-      'Ativação comportamental gradual e realista com metas gentis',
-      'Ressignificação de narrativas internas de autocrítica severa',
-      'Reconexão com propósito, autonomia e prazer genuíno',
-      'Fortalecimento de redes de apoio socioemocional'
-    ],
-    icon: 'Sparkles'
+    title: 'Atualização Constante',
+    desc: 'Formação continuada de excelência pelo Instituto de Ensino e Pesquisa Albert Einstein - SP.'
   },
   {
-    id: 'terapia-casal',
-    title: 'Terapia de Casal & Relações Afetivas',
-    badge: 'Mediação Empática',
-    category: 'relacoes',
-    shortDesc: 'Mediação segura para romper ciclos destrutivos de discussão, restaurar a intimidade e alinhar projetos conjuntos de vida.',
-    fullDesc: 'Relacionamentos saudáveis exigem comunicação consciente e maturidade afetiva. A psicoterapia de casal cria uma arena neutra e segura onde ambos os parceiros são verdadeiramente ouvidos, superando ressentimentos acumulados e restabelecendo o afeto e a cumplicidade.',
-    symptoms: [
-      'Discussões recorrentes sobre os mesmos tópicos sem resolução',
-      'Distanciamento afetivo, ausência de carinho e quebra de intimidade',
-      'Dificuldade de perdoar mágoas passadas ou quebras de confiança',
-      'Divergências acentuadas na criação dos filhos ou finanças'
-    ],
-    benefits: [
-      'Desenvolvimento de comunicação assertiva e não-violenta',
-      'Mapeamento dos gatilhos emocionais individuais e conjugais',
-      'Reconstrução de acordos claros, respeitosos e sustentáveis',
-      'Clareza para tomar decisões importantes sobre o futuro a dois'
-    ],
-    icon: 'HeartHandshake'
-  },
-  {
-    id: 'tdah-adultos',
-    title: 'TDAH & Funções Executivas em Adultos',
-    badge: 'Alta Performance com Saúde',
-    category: 'neuro',
-    shortDesc: 'Estratégias práticas de neuropsicologia para dominar a procrastinação, organizar o tempo e canalizar seu potencial.',
-    fullDesc: 'O TDAH no adulto costuma ser acompanhado de anos de frustração e cobrança excessiva. Nosso foco é fornecer estratégias neuropsicológicas práticas de gerenciamento de tempo, regulação atencional e higiene executiva, transformando o modo como você trabalha e vive.',
-    symptoms: [
-      'Início constante de projetos sem conseguir concluí-los',
-      'Dificuldade crônica em estimar o tempo e cumprir prazos',
-      'Perda recorrente de objetos, compromissos e tarefas simples',
-      'Impulsividade verbal ou hiperfoco desregulado'
-    ],
-    benefits: [
-      'Construção de um sistema personalizado de organização e rotina',
-      'Treino de autorregulação inibitória e manejo da impulsividade',
-      'Redução da sobrecarga mental e do desgaste emocional diário',
-      'Harmonização entre produtividade e qualidade de vida'
-    ],
-    icon: 'Compass'
-  },
-  {
-    id: 'burnout-trabalho',
-    title: 'Burnout & Esgotamento Ocupacional',
-    badge: 'Recuperação Vital',
-    category: 'emocional',
-    shortDesc: 'Desaceleração terapêutica, imposição de limites saudáveis no trabalho e restabelecimento da saúde física e psicológica.',
-    fullDesc: 'O esgotamento profissional atinge profissionais dedicados que ultrapassaram repetidamente seus limites biológicos. Auxiliamos no processo de recuperação da vitalidade, estabelecimento de fronteiras firmes com a carreira e prevenção de recidivas.',
-    symptoms: [
-      'Exaustão física e emocional extrema que não passa com descanso',
-      'Cinismo, irritabilidade e desapego em relação às tarefas profissionais',
-      'Queda acentuada no rendimento acompanhada de sentimento de incompetência',
-      'Sintomas somáticos como enxaquecas, gastrites e dores tensionais'
-    ],
-    benefits: [
-      'Pausa consciente e reparação do sistema neuroendócrino',
-      'Revisão da relação com trabalho, produtividade e perfeccionismo',
-      'Desenvolvimento de assertividade para dizer "não" sem culpa',
-      'Resgate da vida pessoal, lazer e descanso restaurador'
-    ],
-    icon: 'ShieldCheck'
+    title: 'Humanização & Singularidade',
+    desc: 'Cuidado individualizado, sensível e atento à história única e ao ritmo de cada pessoa.'
   }
 ];
 
-export const TESTIMONIALS: Testimonial[] = [
+export const NEURO_EVALUATION_DATA = {
+  definition:
+    'A avaliação neuropsicológica investiga aspectos como atenção, memória, linguagem, aprendizagem e funções executivas (memória de trabalho, flexibilidade cognitiva, controle inibitório, planejamento, resolução de problemas e raciocínio). Por meio de entrevistas, observações e instrumentos adequados à demanda, busca compreender recursos e dificuldades e oferecer informações para os próximos passos.',
+  target: 'Pode ajudar adultos e idosos a investigar dificuldades de memória, atenção, linguagem, organização e outras funções cognitivas.',
+  investigations: [
+    {
+      id: 'neurodesenvolvimento',
+      title: 'Condições do Neurodesenvolvimento',
+      badge: 'Investigação Especializada',
+      description: 'Mapeamento cognitivo detalhado em adultos para:',
+      items: [
+        'TDAH (Transtorno do Déficit de Atenção com Hiperatividade)',
+        'TEA (Transtorno do Espectro Autista)',
+        'Transtornos de aprendizagem e comunicação',
+        'Transtornos motores e do desenvolvimento intelectual'
+      ]
+    },
+    {
+      id: 'declinio-cognitivo',
+      title: 'Declínio Cognitivo & Transtornos Neurocognitivos',
+      badge: 'Atenção ao Adulto e Idoso',
+      description: 'Diferenciação precisa entre envelhecimento típico e alterações clínicas:',
+      items: [
+        'Comprometimento Cognitivo Leve (CCL)',
+        'Demências (Alzheimer, Demência Vascular, Corpos de Lewy, Frontotemporal)',
+        'Lapsos de memória frequentes com impacto funcional',
+        'Perda progressiva de autonomia nas atividades diárias'
+      ]
+    },
+    {
+      id: 'neurologicas-lesoes',
+      title: 'Condições Neurológicas & Lesões Cerebrais',
+      badge: 'Reabilitação & Laudo Técnico',
+      description: 'Alterações cognitivas associadas a quadros neurológicos ou adquiridos:',
+      items: [
+        'Dificuldades após Acidente Vascular Cerebral (AVC)',
+        'Traumatismo Cranioencefálico (TCE)',
+        'Epilepsia e síndromes convulsivas',
+        'Doença de Parkinson e Esclerose Múltipla'
+      ]
+    }
+  ],
+  devolutiveSession: {
+    title: 'E depois? A Sessão Devolutiva',
+    text: 'Na sessão devolutiva, é conversado sobre os resultados, dificuldades e forças, recomendações possíveis e orientação para próximos passos e encaminhamentos quando necessário.'
+  }
+};
+
+export const PSYCHOTHERAPY_MODALITIES: PsychotherapyModality[] = [
   {
-    id: '1',
-    initials: 'M. C.',
-    name: 'Mariana C.',
-    age: '34 anos',
-    area: 'Ansiedade e Pânico',
-    modality: 'Presencial (Belém)',
-    highlight: 'Voltei a respirar sem medo e recuperei minha autonomia.',
-    content: 'Cheguei ao consultório da Natalia após três idas à emergência acreditando que estava infartando. O acolhimento dela foi o primeiro divisor de águas: me explicou a ciência do que meu cérebro estava vivendo e me ensinou a desarmar cada gatilho. Hoje vivo em paz e voltei a dirigir e viajar.'
+    id: 'breve',
+    name: 'Psicoterapia Breve de Orientação Psicanalítica',
+    badge: 'Tempo Delimitado',
+    whatIsIt: 'Processo com tempo delimitado e foco combinado em conjunto, para trabalhar uma questão específica com escuta analítica.',
+    whenToDo: 'Em momentos de crise, transição ou sintoma pontual.'
   },
   {
-    id: '2',
-    initials: 'R. F.',
-    name: 'Rodrigo F.',
-    age: '29 anos',
-    area: 'Avaliação Neuropsicológica & TDAH',
-    modality: 'Presencial (Belém)',
-    highlight: 'O laudo neuropsicológico foi o mapa que faltava para a minha vida.',
-    content: 'Passei a infância e o início da vida adulta achando que eu era apenas preguiçoso e desatento. A avaliação com a Dra. Natalia foi extremamente minuciosa, científica e acolhedora. O laudo explicou com clareza clínica o meu TDAH. As sessões seguintes de reabilitação cognitiva transformaram minha carreira.'
+    id: 'focal',
+    name: 'Psicoterapia Focal',
+    badge: 'Foco Circunscrito',
+    whatIsIt: 'Trabalho concentrado em um núcleo de sofrimento ou conflito definido no início.',
+    whenToDo: 'Quando existe um ponto específico que causa sofrimento e se deseja trabalhar de forma circunscrita, sem abrir um processo longo.'
   },
   {
-    id: '3',
-    initials: 'J. & L.',
-    name: 'Juliana & Lucas',
-    age: '38 e 41 anos',
-    area: 'Terapia de Casal',
-    modality: 'Online',
-    highlight: 'Nosso casamento renasceu através de uma comunicação madura e sem agressão.',
-    content: 'Estávamos à beira do divórcio após 12 anos juntos. A abordagem da Natalia foi cirúrgica: neutra, empática e focada na raiz dos nossos ressentimentos. Aprendemos a nos escutar de verdade sem armas em punho. Foi o melhor investimento que fizemos pela nossa família.'
+    id: 'apoio',
+    name: 'Psicoterapia de Apoio / Suporte Emocional',
+    badge: 'Sustentação & Acolhimento',
+    whatIsIt: 'Processo voltado a sustentar a pessoa em um momento difícil, ajudando-a a organizar o que está vivendo.',
+    whenToDo: 'Em crises, doenças, perdas, sobrecarga ou situações de grande estresse, quando o objetivo imediato é recuperar equilíbrio e capacidade de enfrentamento.'
   },
   {
-    id: '4',
-    initials: 'A. P.',
-    name: 'Ana Paula S.',
-    age: '42 anos',
-    area: 'Burnout & Depressão',
-    modality: 'Online',
-    highlight: 'A terapia online foi tão acolhedora e profunda quanto um abraço seguro.',
-    content: 'Moro no interior e não tinha acesso a profissionais com essa formação em neurociência. As sessões online com a Natalia foram meu porto seguro durante uma crise devastadora de esgotamento profissional. A clareza e a dedicação dela me salvaram.'
+    id: 'analitico',
+    name: 'Processo Analítico',
+    badge: 'Autoconhecimento Profundo',
+    whatIsIt: 'Processo mais amplo, voltado ao autoconhecimento profundo e à elaboração de questões recorrentes.',
+    whenToDo: 'Quando há sofrimento que se repete, padrões relacionais que incomodam ou desejo de compreender-se com mais profundidade.'
   }
 ];
+
+export const FORMAT_COMPARISON = {
+  title: 'Como decidir o formato da psicoterapia?',
+  online: {
+    title: 'On-Line',
+    badge: 'Brasil e Exterior',
+    points: [
+      'Ampliação do acesso com equidade e sigilo.',
+      'Flexibilidade de rotina e economia de tempo.',
+      'Contrato terapêutico claro e transparência.',
+      'Conformidade com a Resolução CFP nº 11/2018.'
+    ]
+  },
+  presencial: {
+    title: 'Presencial',
+    badge: 'Ed. Torre Vitta Office - Marco, Belém',
+    points: [
+      'Eliminação de variáveis tecnológicas que podem interferir na sessão.',
+      'Espaço seguro e acolhedor, que favorece o sigilo e a concentração.',
+      'Contrato terapêutico claro e transparência.',
+      'Ambiente privativo preparado especialmente para o seu momento.'
+    ]
+  },
+  commonPrinciple:
+    'O atendimento é pautado pelo sigilo profissional e por cuidados com a privacidade, respeitados os limites éticos e legais.'
+};
 
 export const FAQS: FAQItem[] = [
   {
     id: 'faq-1',
-    category: 'Consultas',
-    question: 'Como funciona a primeira sessão de psicoterapia?',
-    answer: 'A primeira sessão é um momento dedicado à escuta acolhedora da sua história, das suas dores e dos objetivos que deseja alcançar. Não há julgamentos. Juntos, compreendemos o motivo da sua busca e traçamos uma proposta de trabalho terapêutico personalizada e transparente, esclarecendo todas as suas dúvidas sobre o processo.'
+    category: 'Avaliação Neuropsicológica',
+    question: 'Avaliação Psicológica é igual a Avaliação Neuropsicológica?',
+    answer:
+      'A avaliação psicológica é um processo amplo para investigar questões psicológicas. A avaliação neuropsicológica é voltada especialmente à compreensão de funções cognitivas, como memória, atenção e linguagem, considerando também aspectos emocionais, comportamentais e o cotidiano da pessoa. Ambas podem integrar entrevista, observação e instrumentos.'
   },
   {
     id: 'faq-2',
-    category: 'Modalidade',
-    question: 'A terapia online possui a mesma eficácia da consulta presencial?',
-    answer: 'Sim, comprovadamente. Diversos estudos internacionais de neurociência e psicologia clínica atestam que a psicoterapia online via videoconferência segura possui eficácia equivalente ao atendimento presencial. O atendimento é regulamentado pela Resolução CFP nº 11/2018 e oferece total sigilo, conforto e flexibilidade de horários, sem necessidade de deslocamento.'
+    category: 'Duração da Avaliação',
+    question: 'Quanto tempo demora uma Avaliação Neuropsicológica?',
+    answer:
+      'Não existe um prazo único que sirva para todos os casos. A duração depende da demanda, dos procedimentos necessários e de fatores como análise de documentos ou informações complementares, pausas e adaptações. Após conhecer a demanda, é possível combinar uma estimativa. O processo também inclui análise dos dados, devolutiva e, conforme a finalidade, elaboração do documento psicológico.'
   },
   {
     id: 'faq-3',
-    category: 'Neuropsicologia',
-    question: 'O que é a Avaliação Neuropsicológica e quantas sessões são necessárias?',
-    answer: 'A Avaliação Neuropsicológica é uma investigação aprofundada das funções cerebrais e cognitivas através de entrevistas clínicas e baterias de testes psicométricos validados. O processo costuma durar de 4 a 7 sessões, incluindo anamnese detalhada, testagem e a sessão final de devolução com entrega de laudo técnico completo e compreensível.'
+    category: 'Processo Terapêutico & Alta',
+    question: 'Como funciona o processo de psicoterapia e alta?',
+    answer:
+      'No início, conversamos sobre o motivo da procura, sua história, o que você gostaria de trabalhar e como será o atendimento. A frequência, os honorários e outros combinados são explicados antes do início. O encerramento é conversado ao longo do processo, considerando o percurso, as necessidades atuais e os próximos passos. Quando necessário, pode ser feito encaminhamento.'
   },
   {
     id: 'faq-4',
-    category: 'Financeiro',
-    question: 'Você atende por planos de saúde ou emite recibo para reembolso?',
-    answer: 'Os atendimentos são particulares para garantir tempo de sessão estendido, dedicação exclusiva e estudo de caso individualizado. Fornecemos nota fiscal detalhada e recibo profissional de acordo com as normas da Receita Federal e do CFP, permitindo que você solicite o reembolso integral ou parcial junto ao seu plano de saúde (Bradesco, SulAmérica, Unimed, Amil, Petrobrás, entre outros).'
+    category: 'Regulamentação CFP',
+    question: 'Quais resoluções do Conselho Federal de Psicologia regulamentam os atendimentos?',
+    answer:
+      'A Psicoterapia é regulamentada pela Resolução CFP Nº 13/2022 e a Avaliação Neuropsicológica pela Resolução CFP Nº 31/2022. Os atendimentos online seguem as diretrizes da Resolução CFP nº 11/2018, garantindo segurança ética e técnica integral.'
   },
   {
     id: 'faq-5',
-    category: 'Duração',
-    question: 'Qual a duração de cada sessão e qual a frequência recomendada?',
-    answer: 'Cada sessão de psicoterapia tem duração de 50 minutos. A frequência recomendada no início do tratamento é semanal, permitindo continuidade e fortalecimento do vínculo terapêutico. Conforme a evolução e conquista de autonomia emocional, os encontros passam a ser quinzenais até a alta clínica.'
+    category: 'Público-Alvo',
+    question: 'Qual o público atendido no consultório e online?',
+    answer:
+      'O atendimento é direcionado a Adultos e Idosos, tanto na psicoterapia de base psicanalítica quanto na avaliação neuropsicológica e investigação de queixas cognitivas.'
   },
   {
     id: 'faq-6',
-    category: 'Sigilo',
-    question: 'Como é garantido o sigilo ético e a confidencialidade?',
-    answer: 'O sigilo profissional é um dever ético inegociável regido pelo Código de Ética Profissional do Psicólogo (Artigo 9º). Todas as informações compartilhadas em consulta, seja presencial ou online em ambiente criptografado, são estritamente confidenciais e protegidas por lei.'
+    category: 'Reembolso & Planos',
+    question: 'Como funciona o reembolso junto ao plano de saúde?',
+    answer:
+      'Os atendimentos são particulares, emitindo-se recibo e nota fiscal profissional detalhados conforme as exigências da Receita Federal e do CFP, para que você solicite o reembolso integral ou parcial junto ao seu convênio de saúde.'
   }
 ];
 
-export const CONTACT_INFO = {
-  name: 'Natalia Belmonte',
-  crp: 'CRP 10/06482',
-  title: 'Neuropsicóloga & Psicóloga Clínica',
-  phone: '(91) 98264-4888',
-  phoneRaw: '5591982644888',
-  address: 'Tv. Angustura - Pedreira, Belém - PA, 68447-000',
-  city: 'Belém - Pará',
-  hours: 'Segunda a Sexta: 08:00 às 20:00 • Sábados: 08:00 às 13:00',
-  email: 'contato@nataliabelmonte.com.br'
-};
+export const TESTIMONIALS = [
+  {
+    id: '1',
+    initials: 'M. S.',
+    name: 'M. S.',
+    age: '44 anos',
+    area: 'Psicoterapia Focal',
+    modality: 'Presencial (Torre Vitta Office)',
+    highlight: 'Um espaço de escuta profunda onde me senti compreendido desde a primeira sessão.',
+    content:
+      'Procurei a Natália em um momento de transição e sobrecarga intensa. A escuta psicanalítica e a clareza do contrato terapêutico me ajudaram a reorganizar minhas prioridades com respeito aos meus próprios limites.'
+  },
+  {
+    id: '2',
+    initials: 'R. B.',
+    name: 'R. B.',
+    age: '68 anos',
+    area: 'Avaliação Neuropsicológica (Memória)',
+    modality: 'Presencial (Marco)',
+    highlight: 'A sessão devolutiva trouxe clareza e alívio para toda a família.',
+    content:
+      'Estávamos apreensivos com lapsos de memória frequentes. A avaliação foi extremamente cuidadosa, ética e humanizada. A sessão devolutiva nos entregou um mapa claro dos próximos passos e orientações médicas.'
+  },
+  {
+    id: '3',
+    initials: 'L. T.',
+    name: 'L. T.',
+    age: '33 anos',
+    area: 'Avaliação de TDAH Adulto',
+    modality: 'Presencial & Online',
+    highlight: 'Investigação criteriosa e acolhedora com base em evidências.',
+    content:
+      'A pós-graduação da Natália no Einstein se reflete em cada teste e explicação. Finalmente compreendi meu funcionamento cognitivo sem culpas, com um laudo técnico completo e acolhedor.'
+  },
+  {
+    id: '4',
+    initials: 'C. M.',
+    name: 'C. M.',
+    age: '52 anos',
+    area: 'Psicoterapia de Apoio',
+    modality: 'On-line',
+    highlight: 'A psicoterapia online me proporcionou sustentação num momento de luto e dor.',
+    content:
+      'Moro fora de Belém e poder contar com o acolhimento seguro da Natália semanalmente foi determinante para eu recuperar meu equilíbrio e seguir em frente.'
+  }
+];

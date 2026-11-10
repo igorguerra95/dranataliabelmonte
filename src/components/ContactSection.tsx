@@ -9,9 +9,14 @@ import {
   CheckCircle2, 
   MessageCircle,
   Calendar,
-  Sparkles
+  Building2,
+  Users,
+  Linkedin,
+  Instagram,
+  BookOpen,
+  ArrowRight
 } from 'lucide-react';
-import { CONTACT_INFO, CLINICAL_AREAS } from '../data/clinicalData';
+import { CONTACT_INFO, PSYCHOTHERAPY_MODALITIES } from '../data/clinicalData';
 import { BookingFormData } from '../types';
 
 interface ContactSectionProps {
@@ -23,7 +28,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialArea }) =
     fullName: '',
     phone: '',
     email: '',
-    modality: 'Presencial (Belém)',
+    modality: 'Presencial (Ed. Torre Vitta Office)',
     areaOfInterest: initialArea || 'Avaliação Neuropsicológica Completa',
     preferredPeriod: 'Tarde',
     message: ''
@@ -34,22 +39,19 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialArea }) =
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Gerar link formatado do WhatsApp
     const text = encodeURIComponent(
-      `Olá, Dra. Natalia Belmonte! Gostaria de agendar uma consulta:\n\n` +
+      `Olá, Dra. Natália Belmonte! Gostaria de agendar uma consulta:\n\n` +
       `👤 *Nome:* ${formData.fullName}\n` +
       `📞 *Telefone:* ${formData.phone}\n` +
       `📧 *E-mail:* ${formData.email || 'Não informado'}\n` +
       `📍 *Modalidade:* ${formData.modality}\n` +
-      `🧠 *Área de Interesse:* ${formData.areaOfInterest}\n` +
+      `🧠 *Área / Demanda:* ${formData.areaOfInterest}\n` +
       `🕒 *Período Preferido:* ${formData.preferredPeriod}\n` +
-      (formData.message ? `💬 *Mensagem/Queixa:* ${formData.message}` : '')
+      (formData.message ? `💬 *Mensagem:* ${formData.message}` : '')
     );
 
     const whatsappUrl = `https://wa.me/${CONTACT_INFO.phoneRaw}?text=${text}`;
-
     setSubmitted(true);
-    // Abre WhatsApp em nova aba ou deep link
     window.open(whatsappUrl, '_blank');
   };
 
@@ -59,34 +61,52 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialArea }) =
         
         {/* Cabeçalho */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-white border border-[#D4AF37]/30 text-[#8C6D1F] mb-4 shadow-sm">
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-white border border-[#D4AF37]/40 text-[#8C6D1F] mb-4 shadow-xs">
             <MessageCircle className="w-3.5 h-3.5 text-[#BE185D]" />
-            <span>Atendimento Humanizado &bull; Agendamento</span>
+            <span>2. Dados para Contato &bull; Informações e Atendimento</span>
           </span>
           <h2 className="font-serif text-3xl sm:text-5xl font-medium text-[#2B1E24] tracking-tight mb-4">
-            Dê o Primeiro Passo Rumo à Sua Serenidade
+            Inicie Seu Atendimento
           </h2>
           <p className="text-base text-[#4A3E45] font-light leading-relaxed">
-            Estamos prontos para acolher sua história. Preencha o formulário abaixo para pré-agendamento ou entre em contato diretamente pelo WhatsApp com a nossa equipe.
+            Presencial no <strong>Ed. Torre Vitta Office</strong> (bairro Marco, Belém) ou <strong>On-line para todo o Brasil</strong>. Atendimento ético e individualizado para <strong>Adultos e Idosos</strong>.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
-          {/* Coluna 1: Informações de Contato e Mapa (5 colunas) */}
+          {/* Coluna 1: Informações de Contato, Redes Sociais e Mapa (5 colunas) */}
           <div className="lg:col-span-5 space-y-6">
             
-            {/* Card com Dados Oficiais */}
-            <div className="bg-white rounded-3xl p-8 border border-[#EADBCE] shadow-sm">
+            {/* Card com Dados Oficiais do PDF */}
+            <div className="bg-white rounded-3xl p-8 border border-[#EADBCE] shadow-xs">
               <h3 className="font-serif text-2xl font-bold text-[#2B1E24] mb-6">
-                Canais de Atendimento
+                Consultório &amp; Informações
               </h3>
 
               <div className="space-y-6">
                 
-                {/* Telefone / WhatsApp */}
+                {/* Endereço Exato do PDF */}
                 <div className="flex items-start gap-4">
                   <div className="w-11 h-11 rounded-2xl bg-[#FAF5E8] flex items-center justify-center text-[#B38728] shrink-0 border border-[#D4AF37]/25">
+                    <Building2 className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-wider text-[#786C73]">
+                      Consultório Presencial
+                    </p>
+                    <p className="text-sm font-semibold text-[#2B1E24] leading-snug">
+                      {CONTACT_INFO.address}
+                    </p>
+                    <p className="text-[11px] text-[#B38728] font-medium mt-0.5">
+                      Bairro Marco &bull; Belém - PA
+                    </p>
+                  </div>
+                </div>
+
+                {/* Telefone / WhatsApp */}
+                <div className="flex items-start gap-4">
+                  <div className="w-11 h-11 rounded-2xl bg-[#FDF2F8] flex items-center justify-center text-[#BE185D] shrink-0 border border-[#F472B6]/25">
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
@@ -94,98 +114,126 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialArea }) =
                       Telefone &amp; WhatsApp Oficial
                     </p>
                     <a
-                      href={`https://wa.me/${CONTACT_INFO.phoneRaw}?text=${encodeURIComponent('Olá, Dra. Natalia! Gostaria de informações sobre horários de consulta.')}`}
+                      href={`https://wa.me/${CONTACT_INFO.phoneRaw}?text=${encodeURIComponent('Olá, Dra. Natália Belmonte! Gostaria de informações sobre horários de consulta.')}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-base font-semibold text-[#2B1E24] hover:text-[#BE185D] transition-colors"
                     >
                       {CONTACT_INFO.phone}
                     </a>
-                    <p className="text-[11px] text-[#B38728]">Resposta rápida em horário comercial</p>
+                    <p className="text-[11px] text-[#BE185D] font-medium">Link direto para WhatsApp disponível</p>
                   </div>
                 </div>
 
-                {/* Endereço */}
+                {/* Público e Abordagem */}
                 <div className="flex items-start gap-4">
-                  <div className="w-11 h-11 rounded-2xl bg-[#FDF2F8] flex items-center justify-center text-[#BE185D] shrink-0 border border-[#F472B6]/25">
-                    <MapPin className="w-5 h-5" />
+                  <div className="w-11 h-11 rounded-2xl bg-[#FAF5E8] flex items-center justify-center text-[#B38728] shrink-0 border border-[#D4AF37]/25">
+                    <Users className="w-5 h-5" />
                   </div>
                   <div>
                     <p className="text-xs font-bold uppercase tracking-wider text-[#786C73]">
-                      Endereço do Consultório
+                      Público-Alvo &amp; Abordagem
                     </p>
                     <p className="text-sm font-semibold text-[#2B1E24]">
-                      {CONTACT_INFO.address}
+                      {CONTACT_INFO.targetAudience}
                     </p>
-                    <p className="text-[11px] text-[#786C73]">Bairro Pedreira &bull; Belém - Pará</p>
+                    <p className="text-[11px] text-[#786C73]">
+                      {CONTACT_INFO.approach} &bull; {CONTACT_INFO.crp}
+                    </p>
                   </div>
                 </div>
 
-                {/* Horário */}
+                {/* Horários */}
                 <div className="flex items-start gap-4">
-                  <div className="w-11 h-11 rounded-2xl bg-[#FAF5E8] flex items-center justify-center text-[#B38728] shrink-0 border border-[#D4AF37]/25">
+                  <div className="w-11 h-11 rounded-2xl bg-[#FDF2F8] flex items-center justify-center text-[#BE185D] shrink-0 border border-[#F472B6]/25">
                     <Clock className="w-5 h-5" />
                   </div>
                   <div>
                     <p className="text-xs font-bold uppercase tracking-wider text-[#786C73]">
-                      Horário de Funcionamento
+                      Atendimento com Hora Marcada
                     </p>
                     <p className="text-xs sm:text-sm text-[#2B1E24] font-medium leading-relaxed">
                       {CONTACT_INFO.hours}
                     </p>
-                    <p className="text-[11px] text-[#786C73]">Atendimento mediante agendamento prévio</p>
-                  </div>
-                </div>
-
-                {/* Sigilo Profissional */}
-                <div className="flex items-start gap-4">
-                  <div className="w-11 h-11 rounded-2xl bg-[#FDF2F8] flex items-center justify-center text-[#BE185D] shrink-0 border border-[#F472B6]/25">
-                    <ShieldCheck className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-wider text-[#786C73]">
-                      Registro e Ética Profissional
-                    </p>
-                    <p className="text-sm font-semibold text-[#2B1E24]">
-                      {CONTACT_INFO.crp}
-                    </p>
-                    <p className="text-[11px] text-[#786C73]">Conselho Regional de Psicologia</p>
+                    <p className="text-[11px] text-[#786C73]">On-line para todo Brasil e Presencial</p>
                   </div>
                 </div>
 
               </div>
 
-              {/* Botão Direto de WhatsApp */}
+              {/* Botão de WhatsApp Direto */}
               <div className="mt-8 pt-6 border-t border-[#F6F1EC]">
                 <a
-                  href={`https://wa.me/${CONTACT_INFO.phoneRaw}?text=${encodeURIComponent('Olá, Dra. Natalia Belmonte! Gostaria de conversar sobre horários para consulta.')}`}
+                  href={`https://wa.me/${CONTACT_INFO.phoneRaw}?text=${encodeURIComponent('Olá, Dra. Natália Belmonte! Gostaria de conversar sobre horários para consulta.')}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-3.5 px-4 rounded-2xl text-center text-xs font-bold uppercase tracking-wider text-white bg-[#25D366] hover:bg-[#20ba5a] shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                  className="w-full py-3.5 px-4 rounded-2xl text-center text-xs font-bold uppercase tracking-wider text-white bg-[#25D366] hover:bg-[#20ba5a] shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <MessageCircle className="w-4 h-4 fill-white" />
                   <span>Conversar Agora no WhatsApp</span>
                 </a>
               </div>
+
+              {/* Redes Sociais solicitadas no PDF: Whatsapp | LinkedIn | Blog | Instagram */}
+              <div className="mt-6 pt-5 border-t border-[#F6F1EC]">
+                <p className="text-xs font-bold uppercase tracking-wider text-[#786C73] mb-3 text-center sm:text-left">
+                  Redes Sociais &amp; Artigos:
+                </p>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
+                  <a
+                    href={CONTACT_INFO.socialLinks.whatsapp}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2.5 rounded-xl bg-[#FAF7F5] hover:bg-[#25D366]/10 text-[#4A3E45] hover:text-[#25D366] transition-colors flex items-center justify-center gap-1.5 border border-[#EADBCE]"
+                  >
+                    <MessageCircle className="w-3.5 h-3.5" />
+                    <span>WhatsApp</span>
+                  </a>
+                  <a
+                    href={CONTACT_INFO.socialLinks.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2.5 rounded-xl bg-[#FAF7F5] hover:bg-[#0077B5]/10 text-[#4A3E45] hover:text-[#0077B5] transition-colors flex items-center justify-center gap-1.5 border border-[#EADBCE]"
+                  >
+                    <Linkedin className="w-3.5 h-3.5" />
+                    <span>LinkedIn</span>
+                  </a>
+                  <a
+                    href={CONTACT_INFO.socialLinks.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2.5 rounded-xl bg-[#FAF7F5] hover:bg-[#E1306C]/10 text-[#4A3E45] hover:text-[#E1306C] transition-colors flex items-center justify-center gap-1.5 border border-[#EADBCE]"
+                  >
+                    <Instagram className="w-3.5 h-3.5" />
+                    <span>Instagram</span>
+                  </a>
+                  <a
+                    href="#faq"
+                    className="p-2.5 rounded-xl bg-[#FAF7F5] hover:bg-[#D4AF37]/20 text-[#4A3E45] hover:text-[#8C6D1F] transition-colors flex items-center justify-center gap-1.5 border border-[#EADBCE]"
+                  >
+                    <BookOpen className="w-3.5 h-3.5" />
+                    <span>Blog</span>
+                  </a>
+                </div>
+              </div>
             </div>
 
-            {/* Card Visual de Localização em Belém */}
-            <div className="bg-white rounded-3xl p-6 border border-[#EADBCE] shadow-sm">
+            {/* Mapa de Localização no Bairro Marco */}
+            <div className="bg-white rounded-3xl p-6 border border-[#EADBCE] shadow-xs">
               <div className="flex items-center justify-between mb-3">
                 <span className="text-xs font-bold uppercase tracking-wider text-[#2B1E24] flex items-center gap-1.5">
                   <MapPin className="w-3.5 h-3.5 text-[#BE185D]" />
-                  Localização Estratégica
+                  Localização: Torre Vitta Office
                 </span>
-                <span className="text-[11px] text-[#786C73]">Pedreira &bull; Belém</span>
+                <span className="text-[11px] text-[#786C73]">Marco &bull; Belém</span>
               </div>
               <p className="text-xs text-[#4A3E45] leading-relaxed mb-4">
-                Localizado na Tv. Angustura, em ponto nobre e de fácil acesso na Pedreira, com proximidade a vias arteriais e vagas para estacionar com tranquilidade.
+                Edifício comercial de alto padrão com segurança 24h, recepção corporativa, elevadores modernos e estacionamento rotativo na Tv. Rômulo Maiorana, nº 700.
               </p>
               <div className="w-full h-44 rounded-2xl overflow-hidden border border-[#EADBCE] relative bg-[#FAF7F5]">
-                {/* Embed OpenStreetMap / Link interativo */}
                 <iframe
-                  title="Localização Natalia Belmonte Belém"
-                  src="https://maps.google.com/maps?q=Travessa+Angustura+Pedreira+Belem+PA&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                  title="Localização Ed Torre Vitta Office Natalia Belmonte Belem"
+                  src="https://maps.google.com/maps?q=Travessa+Romulo+Maiorana+700+Marco+Belem+PA&t=&z=15&ie=UTF8&iwloc=&output=embed"
                   className="w-full h-full border-0"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
@@ -195,19 +243,19 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialArea }) =
 
           </div>
 
-          {/* Coluna 2: Formulário Inteligente de Pré-Agendamento (7 colunas) */}
+          {/* Coluna 2: Formulário Inteligente (7 colunas) */}
           <div className="lg:col-span-7">
             <div className="bg-white rounded-3xl p-8 sm:p-10 border border-[#D4AF37]/35 shadow-[0_10px_40px_rgba(43,30,36,0.06)] relative">
               
               <div className="mb-8">
                 <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-[#BE185D] bg-[#FDF2F8] border border-[#F472B6]/30 inline-block mb-2">
-                  Pré-Agendamento Rápido
+                  Pré-Agendamento Humanizado
                 </span>
                 <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#2B1E24]">
-                  Solicite Sua Consulta
+                  Solicitar Consulta ou Avaliação
                 </h3>
                 <p className="text-xs sm:text-sm text-[#4A3E45] mt-1">
-                  Seus dados são confidenciais e protegidos pela LGPD e pelo sigilo do CFP.
+                  Seus dados e relatos são estritamente sigilosos e protegidos pelo Código de Ética Profissional.
                 </p>
               </div>
 
@@ -217,10 +265,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialArea }) =
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
                   <h4 className="font-serif text-2xl font-bold text-[#2B1E24] mb-2">
-                    Solicitação Encaminhada!
+                    Mensagem Preparada!
                   </h4>
                   <p className="text-sm text-[#4A3E45] max-w-md mx-auto mb-6">
-                    Sua mensagem foi estruturada e aberta no WhatsApp com a Dra. Natalia Belmonte. Se a janela não abriu automaticamente, clique no botão abaixo para concluir o envio.
+                    A conversa foi iniciada no WhatsApp da Dra. Natália Belmonte com seus dados preenchidos. Caso não tenha aberto automaticamente, clique abaixo:
                   </p>
                   <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                     <a
@@ -230,7 +278,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialArea }) =
                       className="px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-[#25D366] hover:bg-[#20ba5a] shadow-md flex items-center gap-2"
                     >
                       <MessageCircle className="w-4 h-4" />
-                      <span>Abrir WhatsApp</span>
+                      <span>Abrir no WhatsApp</span>
                     </a>
                     <button
                       onClick={() => setSubmitted(false)}
@@ -251,7 +299,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialArea }) =
                     <input
                       type="text"
                       required
-                      placeholder="Ex: Mariana Silva"
+                      placeholder="Ex: Carlos Eduardo Silveira"
                       value={formData.fullName}
                       onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                       className="w-full px-4 py-3 rounded-xl border border-[#EADBCE] focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/20 outline-none text-sm transition-all bg-[#FAF7F5]/50 focus:bg-white"
@@ -275,7 +323,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialArea }) =
                     </div>
                     <div>
                       <label className="block text-xs font-bold uppercase tracking-wider text-[#2B1E24] mb-1.5">
-                        E-mail para Confirmação
+                        E-mail de Contato
                       </label>
                       <input
                         type="email"
@@ -290,62 +338,78 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialArea }) =
                   {/* Modalidade de Atendimento */}
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-[#2B1E24] mb-1.5">
-                      Modalidade Preferencial *
+                      Formato de Atendimento *
                     </label>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <button
                         type="button"
-                        onClick={() => setFormData({ ...formData, modality: 'Presencial (Belém)' })}
+                        onClick={() => setFormData({ ...formData, modality: 'Presencial (Ed. Torre Vitta Office)' })}
                         className={`p-3.5 rounded-xl border text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer ${
-                          formData.modality === 'Presencial (Belém)'
-                            ? 'bg-[#FAF5E8] border-[#D4AF37] text-[#8C6D1F] shadow-sm'
+                          formData.modality === 'Presencial (Ed. Torre Vitta Office)'
+                            ? 'bg-[#FAF5E8] border-[#D4AF37] text-[#8C6D1F] shadow-xs'
                             : 'border-[#EADBCE] text-[#4A3E45] hover:bg-[#FAF7F5]'
                         }`}
                       >
-                        <MapPin className="w-4 h-4 text-[#D4AF37]" />
-                        <span>Presencial (Belém - Pedreira)</span>
+                        <Building2 className="w-4 h-4 text-[#D4AF37]" />
+                        <span>Presencial (Torre Vitta Office, Marco)</span>
                       </button>
 
                       <button
                         type="button"
-                        onClick={() => setFormData({ ...formData, modality: 'Online (Google Meet)' })}
+                        onClick={() => setFormData({ ...formData, modality: 'On-line (Todo o Brasil)' })}
                         className={`p-3.5 rounded-xl border text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer ${
-                          formData.modality === 'Online (Google Meet)'
-                            ? 'bg-[#FDF2F8] border-[#F472B6] text-[#BE185D] shadow-sm'
+                          formData.modality === 'On-line (Todo o Brasil)'
+                            ? 'bg-[#FDF2F8] border-[#F472B6] text-[#BE185D] shadow-xs'
                             : 'border-[#EADBCE] text-[#4A3E45] hover:bg-[#FAF7F5]'
                         }`}
                       >
                         <ShieldCheck className="w-4 h-4 text-[#BE185D]" />
-                        <span>Online (Brasil ou Exterior)</span>
+                        <span>On-line (Todo o Brasil)</span>
                       </button>
                     </div>
                   </div>
 
-                  {/* Especialidade / Motivo */}
+                  {/* Demanda / Especialidade */}
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-[#2B1E24] mb-1.5">
-                      Área de Interesse Principal *
+                      Demanda Principal *
                     </label>
                     <select
                       value={formData.areaOfInterest}
                       onChange={(e) => setFormData({ ...formData, areaOfInterest: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-[#EADBCE] focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/20 outline-none text-sm transition-all bg-[#FAF7F5]/50 focus:bg-white"
+                      className="w-full px-4 py-3 rounded-xl border border-[#EADBCE] focus:border-[#D4AF37] outline-none text-sm bg-[#FAF7F5]/50 focus:bg-white"
                     >
-                      {CLINICAL_AREAS.map((a) => (
-                        <option key={a.id} value={a.title}>
-                          {a.title}
-                        </option>
-                      ))}
-                      <option value="Dúvida / Triagem Inicial com a Psicóloga">
-                        Ainda não tenho certeza (Desejo orientação na primeira sessão)
+                      <option value="Avaliação Neuropsicológica Completa">
+                        Avaliação Neuropsicológica (Memória, Atenção, Funções Executivas)
+                      </option>
+                      <option value="Avaliação de TDAH ou TEA em Adultos">
+                        Investigação de TDAH ou TEA em Adulto
+                      </option>
+                      <option value="Declínio Cognitivo ou Queixa de Memória em Idoso">
+                        Declínio Cognitivo / Queixa de Memória em Idoso
+                      </option>
+                      <option value="Psicoterapia Breve de Orientação Psicanalítica">
+                        Psicoterapia Breve de Orientação Psicanalítica
+                      </option>
+                      <option value="Psicoterapia Focal">
+                        Psicoterapia Focal (Foco circunscrito)
+                      </option>
+                      <option value="Psicoterapia de Apoio / Suporte Emocional">
+                        Psicoterapia de Apoio / Suporte Emocional
+                      </option>
+                      <option value="Processo Analítico">
+                        Processo Analítico (Autoconhecimento profundo)
+                      </option>
+                      <option value="Primeira conversa para definir o formato">
+                        Não sei ao certo (Desejo pensar junto na primeira conversa)
                       </option>
                     </select>
                   </div>
 
-                  {/* Melhor Período */}
+                  {/* Turno */}
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-[#2B1E24] mb-1.5">
-                      Melhor Período para as Sessões *
+                      Melhor Período para Atendimento *
                     </label>
                     <div className="grid grid-cols-3 gap-2">
                       {(['Manhã', 'Tarde', 'Noite'] as const).map((period) => (
@@ -368,14 +432,14 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialArea }) =
                   {/* Mensagem Opcional */}
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-[#2B1E24] mb-1.5">
-                      Conte brevemente o que você busca (opcional e confidencial)
+                      Breve descrição da sua busca (confidencial)
                     </label>
                     <textarea
                       rows={3}
-                      placeholder="Ex: Estou enfrentando crises constantes de ansiedade e gostaria de saber os horários disponíveis para iniciar..."
+                      placeholder="Conte um pouco sobre suas necessidades atuais..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-[#EADBCE] focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/20 outline-none text-sm transition-all bg-[#FAF7F5]/50 focus:bg-white resize-none"
+                      className="w-full px-4 py-3 rounded-xl border border-[#EADBCE] focus:border-[#D4AF37] outline-none text-sm bg-[#FAF7F5]/50 focus:bg-white resize-none"
                     />
                   </div>
 
@@ -383,7 +447,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialArea }) =
                   <div className="pt-2">
                     <button
                       type="submit"
-                      className="w-full py-4 px-6 rounded-2xl text-xs font-bold uppercase tracking-wider text-white bg-gradient-to-r from-[#BE185D] via-[#F472B6] to-[#D4AF37] shadow-[0_10px_30px_rgba(190,24,93,0.3)] hover:shadow-[0_15px_40px_rgba(190,24,93,0.45)] transition-all hover:-translate-y-0.5 active:translate-y-0 cursor-pointer flex items-center justify-center gap-2"
+                      className="w-full py-4 px-6 rounded-2xl text-xs font-bold uppercase tracking-wider text-white bg-gradient-to-r from-[#BE185D] via-[#F472B6] to-[#D4AF37] shadow-[0_10px_30px_rgba(190,24,93,0.3)] hover:shadow-[0_15px_40px_rgba(190,24,93,0.45)] transition-all hover:-translate-y-0.5 cursor-pointer flex items-center justify-center gap-2"
                     >
                       <Send className="w-4 h-4" />
                       <span>Entrar em contato</span>
@@ -391,7 +455,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialArea }) =
                   </div>
 
                   <p className="text-[11px] text-[#786C73] text-center pt-2">
-                    Ao enviar, você será direcionado para o WhatsApp com a sua solicitação pronta.
+                    Ao enviar, você será direcionado para o WhatsApp com a mensagem formatada para a Dra. Natália Belmonte.
                   </p>
 
                 </form>
