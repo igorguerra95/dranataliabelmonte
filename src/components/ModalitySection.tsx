@@ -60,8 +60,10 @@ export const ModalitySection: React.FC<ModalityProps> = ({ onOpenBooking }) => {
               <div className="rounded-2xl overflow-hidden aspect-[16/9] mb-6 relative bg-[#FAF7F5]">
                 <img
                   src={onlineTherapyImg}
-                  alt="Psicoterapia online com Natália Belmonte"
+                  alt="Psicoterapia on-line com Natália Belmonte"
                   className="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
                 <span className="absolute bottom-3 left-3 text-white text-xs font-medium flex items-center gap-1.5">
@@ -111,6 +113,8 @@ export const ModalitySection: React.FC<ModalityProps> = ({ onOpenBooking }) => {
                   src={presencialOfficeImg}
                   alt="Consultório Ed. Torre Vitta Office Natália Belmonte Belém"
                   className="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
                 <span className="absolute bottom-3 left-3 text-white text-xs font-medium flex items-center gap-1.5">
