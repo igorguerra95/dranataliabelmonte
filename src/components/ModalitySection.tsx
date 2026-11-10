@@ -12,6 +12,8 @@ import {
   Sparkles
 } from 'lucide-react';
 import { CONTACT_INFO, FORMAT_COMPARISON } from '../data/clinicalData';
+import presencialOfficeImg from '../assets/images/regenerated_image_1794311942145.jpg';
+import onlineTherapyImg from '../assets/images/regenerated_image_1794312211169.webp';
 
 interface ModalityProps {
   onOpenBooking: () => void;
@@ -57,7 +59,7 @@ export const ModalitySection: React.FC<ModalityProps> = ({ onOpenBooking }) => {
 
               <div className="rounded-2xl overflow-hidden aspect-[16/9] mb-6 relative bg-[#FAF7F5]">
                 <img
-                  src="https://images.unsplash.com/photo-1577563908411-5077b6dc7624?auto=format&fit=crop&w=900&q=80"
+                  src={onlineTherapyImg}
                   alt="Psicoterapia online com Natália Belmonte"
                   className="w-full h-full object-cover"
                 />
@@ -106,7 +108,7 @@ export const ModalitySection: React.FC<ModalityProps> = ({ onOpenBooking }) => {
 
               <div className="rounded-2xl overflow-hidden aspect-[16/9] mb-6 relative bg-[#FAF7F5]">
                 <img
-                  src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=80"
+                  src={presencialOfficeImg}
                   alt="Consultório Ed. Torre Vitta Office Natália Belmonte Belém"
                   className="w-full h-full object-cover"
                 />
